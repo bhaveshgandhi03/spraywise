@@ -151,12 +151,19 @@ function addToPlan(res, date) {
 
 function renderResult(res) {
   const tox = res.toxicity?.color;
+  const coverageStatus = res.coverage?.status || "product_unverified";
+  const signal = res.verdict === "danger"
+    ? "danger"
+    : res.verdict === "warning"
+      ? "warning"
+      : coverageStatus !== "use_in_reference"
+        ? "unverified"
+        : "info";
   const dateInput = h("input", { type: "date", value: todayISO(), min: addDays(todayISO(), -30), max: addDays(todayISO(), 60) });
   const voiceNote = h("p", { class: "muted", role: "status" });
   const added = h("p", { class: "muted", role: "status" });
 
   const facts = h("dl", { class: "facts" },
-    h("dt", {}, t("res.product")), h("dd", {}, res.label.product_name || "—"),
     h("dt", {}, t("res.ai")), h("dd", {}, ingredientsText(res.label) || "—"),
     h("dt", {}, t("res.form")), h("dd", {}, res.label.formulation || "—"),
     h("dt", {}, t("res.tox")),
@@ -179,7 +186,9 @@ function renderResult(res) {
   const summary = res.summary && res._lang === state.lang
     ? h("div", { class: "summary" }, h("strong", {}, t("res.explain")), h("p", {}, res.summary), h("small", {}, t("res.explain.note")))
     : null;
-  const coverage = h("p", { class: "coverage-note", role: "note" }, t(`coverage.${res.coverage?.status || "product_unverified"}`));
+  const coverage = h("p", { class: "coverage-note", dataset: { coverage: coverageStatus }, role: "note" },
+    h("strong", { class: "coverage-label" }, t(`coverage.label.${coverageStatus}`)),
+    h("span", {}, t(`coverage.${coverageStatus}`)));
 
   const actions = h("div", { class: "actions" },
     h("button", { class: "btn ghost small", type: "button", onclick: () => speak(res, voiceNote) }, t("res.listen")),
@@ -193,7 +202,11 @@ function renderResult(res) {
       ]
       : null);
 
-  return h("article", { class: "result", dataset: { tox: tox || "none" } },
+  return h("article", { class: "result", dataset: { tox: tox || "none", signal } },
+    h("header", { class: "result-head" },
+      h("span", { class: "signal-label", dataset: { signal }, role: "status" }, t(`res.status.${signal}`)),
+      h("h2", { class: "result-product" }, res.label.product_name || "—"),
+      h("p", { class: "result-ingredient" }, ingredientsText(res.label) || t("res.ai.unknown"))),
     h("div", { class: "verdict", dataset: { v: res.verdict } }, icon(res.verdict), t(`res.verdict.${res.verdict}`)),
     h("div", { class: "body" },
       res.source === "sample" ? h("span", { class: "badge" }, `${t("res.sample")}: ${res.sample_title}`) : null,
