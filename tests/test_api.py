@@ -33,8 +33,8 @@ def client(monkeypatch):
     return TestClient(main.app)
 
 
-def post_photo(client, data=JPEG, name="a.jpg", ctype="image/jpeg", crop="paddy"):
-    return client.post("/api/analyze", files={"image": (name, data, ctype)}, data={"crop": crop, "lang": "en"})
+def post_photo(client, data=JPEG, name="a.jpg", ctype="image/jpeg"):
+    return client.post("/api/read-label", files={"image": (name, data, ctype)})
 
 
 def test_health_and_static_site(client):
@@ -44,6 +44,16 @@ def test_health_and_static_site(client):
     home = client.get("/")
     assert home.status_code == 200 and "SprayWise" in home.text and "KisanRakshak" not in home.text
     assert client.get("/i18n.json").status_code == 200
+
+
+def test_metadata_exposes_source_dates_and_coverage_gaps(client):
+    r = client.get("/api/meta")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["known_gaps"]
+    assert body["ban_verification_notes"]
+    assert body["sources"]["S1"]["as_on"] == "2024-03-31"
+    assert "coverage_note" in body["sources"]["S2"]
 
 
 def test_gemini_client_uses_api_key(monkeypatch):
@@ -97,15 +107,51 @@ def test_no_inline_script_or_style_in_html():
     assert "<style" not in html and " style=" not in html and " onclick=" not in html
 
 
-def test_analyze_happy_path(client):
+def test_confirmed_scan_flow(client):
+    read = post_photo(client)
+    assert read.status_code == 200
+    label = read.json()["label"]
+    checked = client.post("/api/check", json={
+        "label": label, "crop": "paddy", "scan_confirmed": True,
+    })
+    assert checked.status_code == 200
+    body = checked.json()
+    assert body["reference"]["match"] == "exact" and body["waiting"]["days"] == 40
+    assert body["source"] == "scan"
+    assert body["coverage"]["status"] == "use_in_reference"
+
+
+def test_legacy_analyze_requires_confirmation_flow(client):
+    r = client.post("/api/analyze", files={"image": ("a.jpg", JPEG, "image/jpeg")})
+    assert r.status_code == 409
+    assert r.json()["error"]["code"] == "confirmation_required"
+
+
+def test_read_label_returns_fields_before_safety_check(client):
     r = post_photo(client)
     assert r.status_code == 200
     body = r.json()
-    assert body["reference"]["match"] == "exact" and body["waiting"]["days"] == 40
-    assert body["source"] == "scan"
+    assert body["label"]["ingredients"] == GOOD_LABEL["ingredients"]
+    assert "reference" not in body and "verdict" not in body
 
 
-def test_analyze_rejects_non_image_and_oversize(client):
+def test_read_label_rejects_non_image(client):
+    r = post_photo(client, data=b"%PDF-not-image")
+    assert r.status_code == 415 and r.json()["error"]["code"] == "badimage"
+
+
+def test_confirmed_scan_keeps_scan_specific_checks(client):
+    r = client.post("/api/check", json={
+        "scan_confirmed": True,
+        "label": {"ingredients": [{"name": "Hexaconazole", "percent": "5%"}], "formulation": "EC"},
+        "crop": "paddy",
+    })
+    assert r.status_code == 200
+    assert r.json()["source"] == "scan"
+    assert "NO_REG" in {alert["code"] for alert in r.json()["alerts"]}
+
+
+def test_read_label_rejects_non_image_and_oversize(client):
     assert post_photo(client, data=b"%PDF-1.4 not an image").status_code == 415
     assert post_photo(client, data=JPEG + b"0" * (1024 * 1024)).status_code == 413
 
@@ -173,6 +219,15 @@ def test_plan_endpoint(client):
     assert r.status_code == 200 and r.json()["earliest_safe_harvest"] is not None
     bad = client.post("/api/plan", json={"items": [{"label": lab, "crop": "paddy", "spray_date": "2020-01-01"}]})
     assert bad.status_code == 422 and bad.json()["error"]["code"] == "baddate"
+
+
+def test_plan_does_not_claim_all_uses_are_in_reference(client):
+    lab = {"ingredients": [{"name": "Unknown pesticide"}], "formulation": "EC", "printed_waiting_period": "14 days"}
+    from app.security import today_ist
+    today = today_ist().isoformat()
+    r = client.post("/api/plan", json={"items": [{"label": lab, "crop": "paddy", "spray_date": today}]})
+    assert r.status_code == 200
+    assert r.json()["all_uses_in_reference"] is False
 
 
 # ---- AI safety ---------------------------------------------------------------------

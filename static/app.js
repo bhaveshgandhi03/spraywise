@@ -17,6 +17,7 @@ const state = {
   dict: {},
   meta: null,
   file: null,
+  pendingLabel: null,
   lastScan: null,
   lastSearch: null,
   searchForm: { ai: "", strength: "", form: "", expiry: "" },
@@ -143,6 +144,7 @@ function addToPlan(res, date) {
   items.push({
     id: (crypto.randomUUID && crypto.randomUUID()) || String(Date.now() + Math.random()),
     crop: res.crop, spray_date: date, label: res.label, wait_days: res.waiting.days,
+    coverage_status: res.coverage?.status || "product_unverified",
   });
   store.set("kr.plan", items.slice(-12));
 }
@@ -177,6 +179,7 @@ function renderResult(res) {
   const summary = res.summary && res._lang === state.lang
     ? h("div", { class: "summary" }, h("strong", {}, t("res.explain")), h("p", {}, res.summary), h("small", {}, t("res.explain.note")))
     : null;
+  const coverage = h("p", { class: "coverage-note", role: "note" }, t(`coverage.${res.coverage?.status || "product_unverified"}`));
 
   const actions = h("div", { class: "actions" },
     h("button", { class: "btn ghost small", type: "button", onclick: () => speak(res, voiceNote) }, t("res.listen")),
@@ -194,7 +197,7 @@ function renderResult(res) {
     h("div", { class: "verdict", dataset: { v: res.verdict } }, icon(res.verdict), t(`res.verdict.${res.verdict}`)),
     h("div", { class: "body" },
       res.source === "sample" ? h("span", { class: "badge" }, `${t("res.sample")}: ${res.sample_title}`) : null,
-      facts, alerts, summary, actions, voiceNote, added,
+      coverage, facts, alerts, summary, actions, voiceNote, added,
       h("details", {}, h("summary", {}, t("tips.title")),
         h("ul", {}, [1, 2, 3, 4, 5, 6].map((i) => h("li", {}, t(`tips.${i}`)))))),
     h("p", { class: "muted", style: "padding:0 16px 14px;margin:0" }, t("disclaimer")));
@@ -236,15 +239,87 @@ async function runScan() {
     fd.append("image", blob, "label.jpg");
     fd.append("crop", state.crop);
     fd.append("lang", state.lang);
-    const res = await api("/api/analyze", { method: "POST", body: fd });
-    res._lang = state.lang;
-    state.lastScan = res;
-    showOut(renderResult(res));
+    const res = await api("/api/read-label", { method: "POST", body: fd });
+    state.pendingLabel = res.label;
+    state.lastScan = null;
+    showOut(renderLabelConfirmation(res.label));
   } catch (e) { showError(e.code || "generic"); }
   finally { btn.disabled = false; }
 }
 
+function renderLabelConfirmation(label) {
+  const ingredients = label.ingredients || [];
+  const fields = [
+    h("label", { class: "field" }, h("span", {}, t("scan.productname")),
+      h("input", { name: "product_name", value: label.product_name || "", maxlength: 80 })),
+    h("div", { class: "stack" }, ingredients.map((ingredient, index) =>
+      h("div", { class: "row2" },
+        h("label", { class: "field" }, h("span", {}, `${t("scan.ingredient")} ${index + 1}`),
+          h("input", { name: "ingredient_name", value: ingredient.name || "", maxlength: 80, required: true })),
+        h("label", { class: "field" }, h("span", {}, t("scan.strength")),
+          h("input", { name: "ingredient_percent", value: ingredient.percent || "", maxlength: 30 }))))),
+    h("label", { class: "field" }, h("span", {}, t("scan.form")),
+      h("input", { name: "formulation", value: label.formulation || "", maxlength: 30 })),
+    h("label", { class: "field" }, h("span", {}, t("scan.crops")),
+      h("input", { name: "printed_crops", value: (label.printed_crops || []).join(", "), maxlength: 600 })),
+    h("label", { class: "field" }, h("span", {}, t("scan.waitingPeriod")),
+      h("input", { name: "printed_waiting_period", value: label.printed_waiting_period || "", maxlength: 120 })),
+    h("label", { class: "field" }, h("span", {}, t("scan.expiry")),
+      h("input", { name: "expiry_date", value: label.expiry_date || "", maxlength: 30 })),
+    h("label", { class: "field" }, h("span", {}, t("scan.registration")),
+      h("input", { name: "registration_number", value: label.registration_number || "", maxlength: 60 })),
+  ];
+  return h("form", { class: "stack", onsubmit: confirmScannedLabel },
+    h("h3", {}, t("scan.review.title")),
+    h("p", { class: "notice" }, t("scan.review.note")),
+    ...fields,
+    h("button", { class: "btn big go", type: "submit" }, t("scan.confirm")));
+}
+
+async function confirmScannedLabel(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const values = new FormData(form);
+  const names = values.getAll("ingredient_name").map((name) => String(name).trim());
+  if (!names.some(Boolean)) {
+    showError("unreadable");
+    if (state.pendingLabel) $("#out").append(renderLabelConfirmation(state.pendingLabel));
+    return;
+  }
+  busy(true);
+  try {
+    const res = await api("/api/check", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        crop: state.crop,
+        lang: state.lang,
+        scan_confirmed: true,
+        label: {
+          product_name: String(values.get("product_name") || "").trim() || null,
+          ingredients: names.map((name, index) => ({
+            name,
+            percent: String(values.getAll("ingredient_percent")[index] || "").trim() || null,
+          })).filter((ingredient) => ingredient.name),
+          formulation: String(values.get("formulation") || "").trim() || null,
+          printed_crops: String(values.get("printed_crops") || "").split(",").map((crop) => crop.trim()).filter(Boolean),
+          printed_waiting_period: String(values.get("printed_waiting_period") || "").trim() || null,
+          expiry_date: String(values.get("expiry_date") || "").trim() || null,
+          registration_number: String(values.get("registration_number") || "").trim() || null,
+        },
+      }),
+    });
+    res._lang = state.lang;
+    state.pendingLabel = null;
+    state.lastScan = res;
+    showOut(renderResult(res));
+  } catch (e) {
+    showError(e.code || "generic");
+    if (state.pendingLabel) $("#out").append(renderLabelConfirmation(state.pendingLabel));
+  }
+}
+
 async function runSample(s) {
+  state.pendingLabel = null;
   state.crop = s.crop; store.set("kr.crop", s.crop);
   document.querySelectorAll(".chip[data-crop]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.crop === state.crop)));
   busy(true);
@@ -266,8 +341,11 @@ async function viewScan(root) {
       const f = e.target.files?.[0];
       if (!f) return;
       state.file = f;
+      state.pendingLabel = null;
+      state.lastScan = null;
       preview.src = URL.createObjectURL(f);
       preview.hidden = false;
+      $("#out").replaceChildren();
       $("#scanBtn").disabled = false;
     },
   });
@@ -281,7 +359,8 @@ async function viewScan(root) {
       h("button", { id: "scanBtn", class: "btn big go", type: "button", disabled: !state.file || !photoOn, onclick: runScan }, t("scan.analyze")),
       h("div", { id: "out", "aria-live": "polite" }),
       h("section", {}, h("h3", {}, t("scan.sample")), h("p", { class: "muted" }, t("scan.sample.note")), sampleBox)));
-  if (state.lastScan) $("#out").append(renderResult(state.lastScan));
+  if (state.pendingLabel) $("#out").append(renderLabelConfirmation(state.pendingLabel));
+  else if (state.lastScan) $("#out").append(renderResult(state.lastScan));
   try {
     const list = await api("/api/samples");
     list.forEach((s) => sampleBox.append(h("button", { class: "sample", type: "button", onclick: () => runSample(s) }, s.title)));
@@ -423,6 +502,7 @@ async function viewPlan(root) {
         r.safe ? h("span", { class: `pill ${r.left <= 0 ? "done" : ""}` }, rel(r.left)) : null),
       h("span", { class: "muted" }, `${t(`crop.${r.it.crop}`)} · ${t("res.sprayDate")}: ${fmtDate(r.it.spray_date)}`),
       r.safe ? h("span", {}, `${t("plan.earliest")}: ${fmtDate(r.safe)}`) : h("span", { class: "muted" }, t("plan.unknown")),
+      h("span", { class: "coverage-note" }, t(`coverage.${r.analysis?.coverage?.status || r.it.coverage_status || "product_unverified"}`)),
       h("div", { class: "btns" },
         r.safe ? h("button", { class: "btn ghost small", type: "button", onclick: () => icsFor(r.it, r.safe) }, t("plan.remind")) : null,
         h("button", {
@@ -431,6 +511,7 @@ async function viewPlan(root) {
         }, t("plan.remove")))));
   });
   wrap.append(
+    h("p", { class: "coverage-note" }, t("plan.calculationOnly")),
     h("p", { class: "muted" }, t("plan.mix")),
     h("p", { class: "muted" }, t("plan.private")),
     h("button", { class: "link", type: "button", onclick: () => { store.set("kr.plan", []); go("plan"); } }, t("plan.clear")));
@@ -439,13 +520,22 @@ async function viewPlan(root) {
 /* ------------------------------------------------------------------ about view */
 function viewAbout(root) {
   const src = Object.values(state.meta?.sources || {});
+  const sourceItems = src.map((source) => h("li", {},
+    h("a", { href: source.url, target: "_blank", rel: "noopener noreferrer" }, source.title),
+    source.issuer ? h("p", { class: "muted" }, `${t("about.source.issuer")}: ${source.issuer}`) : null,
+    h("p", { class: "muted" }, `${t("about.source.date")}: ${source.as_on || t("about.source.undated")}`),
+    source.coverage_note ? h("p", { class: "muted" }, source.coverage_note) : null));
+  const gaps = state.meta?.known_gaps || [];
+  const banNotes = state.meta?.ban_verification_notes || [];
   root.append(h("div", { class: "stack" },
     h("h2", {}, t("about.title")),
     h("p", {}, t("about.body")),
     h("p", { class: "notice" }, t("about.help")),
     h("p", {}, t("about.data")),
-    h("details", {}, h("summary", {}, t("res.source")),
-      h("ul", {}, src.map((s) => h("li", {}, h("a", { href: s.url, target: "_blank", rel: "noopener noreferrer" }, s.title))))),
+    h("details", {}, h("summary", {}, t("about.sources.title")),
+      h("ul", {}, sourceItems)),
+    h("details", {}, h("summary", {}, t("about.scope.title")), h("ul", {}, gaps.map((gap) => h("li", {}, gap)))),
+    h("details", {}, h("summary", {}, t("about.banVerification.title")), h("ul", {}, banNotes.map((note) => h("li", {}, note)))),
     h("details", {}, h("summary", {}, t("tips.title")), h("ul", {}, [1, 2, 3, 4, 5, 6].map((i) => h("li", {}, t(`tips.${i}`))))),
     h("p", { class: "muted" }, t("disclaimer"))));
 }

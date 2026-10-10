@@ -485,6 +485,14 @@ def analyze(label: dict[str, Any], crop: str = "other", today: date | None = Non
         crop_check = "label_missing"
         alerts.append({"code": "LABEL_CROP_MISSING", "level": "warning", "params": {"crop": crop}})
 
+    product_in_reference = ref["match"] == "exact" and product is not None
+    use_in_reference = product_in_reference and crop_check == "listed"
+    coverage_status = (
+        "use_in_reference" if use_in_reference
+        else "crop_unverified" if product_in_reference
+        else "product_unverified"
+    )
+
     # ---- waiting period: the longer of reference and label is used
     waiting["label_days"] = parse_days(label.get("printed_waiting_period"))
     rd, ld = waiting["reference_days"], waiting["label_days"]
@@ -554,6 +562,11 @@ def analyze(label: dict[str, Any], crop: str = "other", today: date | None = Non
             ),
             "candidates": ref["candidates"],
         },
+        "coverage": {
+            "status": coverage_status,
+            "product_in_reference": product_in_reference,
+            "crop_in_reference": crop_check == "listed",
+        },
         "crop_check": crop_check,
         "waiting": waiting,
         "expiry": expiry,
@@ -612,6 +625,9 @@ def plan(items: list[dict[str, Any]], today: date | None = None) -> dict[str, An
     return {
         "items": rows,
         "earliest_safe_harvest": earliest.isoformat() if earliest else None,
+        "all_uses_in_reference": all(
+            r["analysis"]["coverage"]["status"] == "use_in_reference" for r in rows
+        ),
         "some_unknown": unknown,
         "alerts": alerts,
         "today": today.isoformat(),

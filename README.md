@@ -24,9 +24,9 @@ Pesticide labels are small, technical and mostly in English or Hindi. The people
 
 ## What it does
 
-1. **Reads the packet** from a photo (vision AI): ingredient, strength, form, toxicity colour band, registration number, batch, expiry, crops and waiting period printed on it.
+1. **Reads the packet** from a photo (vision AI): ingredient, strength, form, toxicity colour band, registration number, batch, expiry, crops and waiting period printed on it. The user confirms/corrects the extracted ingredient, strength and form before the reference check runs.
 2. **Checks bans and restrictions** against 95 entries from the official lists, including crop-specific restrictions. Monocrotophos on tomato and oxyfluorfen on groundnut are flagged, but not on crops where they are still allowed.
-3. **Waiting period before harvest** for 30 products on tomato, groundnut and paddy. It never borrows a value from a different strength or form. If reference and label disagree it uses the longer one.
+3. **Waiting period before harvest** for 30 products on tomato, groundnut and paddy. It never borrows a value from a different strength or form. If reference and label disagree it uses the longer one. Unknown products/crops are explicitly marked unverified, never treated as approved.
 4. **Expiry check** in code, not by the AI.
 5. **Toxicity colour band**, the red / yellow / blue / green mark printed on Indian packets ([Insecticides Rules, 1971](https://en.wikipedia.org/wiki/Toxicity_label)), explained in words.
 6. **Spray plan and diary.** Add products with the spray date. It computes the earliest harvest date across all products (the longest waiting period wins), warns when two products share an active ingredient (overdose risk), and exports a calendar reminder (.ics). Saved on the phone only.
@@ -54,6 +54,8 @@ photo ──► vision model reads the printed fields (JSON, bounded, sanitised)
 - Text on a packet is treated as data. The prompt tells the model to ignore instructions printed on it, and its output is cut to a fixed schema and length.
 - Unknown means unknown. A missing value shows "read the label". The app never says a product is "safe", only "no ban found, still follow the label".
 - A product that is not in the reference file is reported as *not covered*, not as approved.
+- Exact reference and crop matches are kept separate from product registration or safety; absence of a ban is never treated as proof of approval.
+- The About screen lists source dates and known coverage gaps. Curated data is not bulk-expanded without manual verification against authoritative sources.
 - The AI summary is optional and is dropped unless every number in it appears in the checked facts.
 
 ## Tech stack
@@ -103,15 +105,16 @@ python scripts/try_photo.py my_packet.jpg paddy
 | Endpoint | Purpose |
 |---|---|
 | `GET /api/health` | Status, whether photo reading is on, data counts |
-| `POST /api/analyze` | Photo (multipart) + crop + language → full analysis |
+| `POST /api/read-label` | Photo (multipart) → extracted fields for the user to confirm |
 | `POST /api/check` | Typed label fields → the same analysis, no AI needed |
+| `POST /api/analyze` | Legacy route; returns 409 so clients use the confirmation flow |
 | `POST /api/plan` | Spray list → earliest harvest date and duplicate-ingredient warnings |
 | `GET /api/samples`, `GET /api/sample/{id}` | Fictional packets for demos |
 | `GET /api/meta` | Ingredient suggestions, data sources, known gaps |
 
 ## Testing
 
-`python -m pytest` runs 54 tests, including:
+`python -m pytest` runs the backend and coverage-safety tests, including:
 
 - ban and restriction logic, crop-specific cases, misspelt names, and look-alike ingredients that must not be confused (hexaconazole, tebuconazole, propiconazole)
 - waiting periods never borrowed across formulations; combination products never given a single-product value

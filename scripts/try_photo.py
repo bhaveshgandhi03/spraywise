@@ -1,9 +1,8 @@
-"""Live check with your own API key and a real packet photo.
+"""Read a packet photo with your own API key and check it after label review.
 
-    ANTHROPIC_API_KEY=... python scripts/try_photo.py photo.jpg paddy
+    GOOGLE_GEMINI_API_KEY=... python scripts/try_photo.py photo.jpg paddy
 
-Prints what the model read from the packet and the full rules-engine analysis.
-Run this once before the demo: it is the only path the automated tests cannot cover (a real API call).
+Prints what the model read and requires explicit confirmation before applying reference checks.
 """
 import json
 import sys
@@ -26,6 +25,9 @@ settings = load_settings()
 label = llm.extract_label(data, media, settings)
 print("--- read from packet ---")
 print(json.dumps(label, indent=2, ensure_ascii=False))
+confirmed = input("Do the ingredient, strength, and form match the printed label? [y/N] ").strip().lower()
+if confirmed != "y":
+    sys.exit("No checks were run. Correct the extracted fields in the SprayWise app and try again.")
 print("--- analysis ---")
 res = engine.analyze({**label, "source": "scan"}, crop)
-print(json.dumps({k: res[k] for k in ("verdict", "waiting", "expiry", "toxicity", "alerts")}, indent=2, ensure_ascii=False))
+print(json.dumps({k: res[k] for k in ("verdict", "coverage", "waiting", "expiry", "toxicity", "alerts")}, indent=2, ensure_ascii=False))

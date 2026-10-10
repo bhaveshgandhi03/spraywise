@@ -86,8 +86,9 @@ uvicorn app.main:app --reload
 # Health check (works without API key)
 curl http://localhost:8000/api/health
 
-# Upload a pesticide packet photo
-# POST to http://localhost:8000/api/analyze with image file
+# Read a pesticide packet photo for user confirmation
+# POST to http://localhost:8000/api/read-label with image file
+# Then POST confirmed fields to http://localhost:8000/api/check
 
 # Or test without photo using samples
 curl http://localhost:8000/api/samples

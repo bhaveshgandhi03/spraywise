@@ -16,8 +16,8 @@
 │              FastAPI Backend (app/main.py)                   │
 │  Routes:                                                     │
 │  - GET  /api/health         (no key needed)                 │
-│  - POST /api/analyze        (NEEDS Gemini API)              │
-│  - POST /api/check          (no key needed)                 │
+│  - POST /api/read-label     (NEEDS Gemini API)              │
+│  - POST /api/check          (confirm fields, then analyze)   │
 │  - POST /api/plan           (no key needed)                 │
 │  - GET  /api/samples        (no key needed)                 │
 └──────────────────────┬──────────────────────────────────────┘
@@ -63,7 +63,7 @@
 ```
 User uploads image
     ↓
-Frontend sends to /api/analyze
+Frontend sends to /api/read-label
     ↓
 FastAPI receives image
     ├─ Validate: is it an image?
@@ -282,7 +282,8 @@ Responsibility: Rules engine (pure Python)
 Responsibility: HTTP API routes
 │
 ├─ /api/health       ← Check status
-├─ /api/analyze      ← Upload photo (calls llm.py)
+├─ /api/read-label   ← Read uploaded photo (calls llm.py)
+├─ /api/analyze      ← Legacy endpoint (409; confirmation required)
 ├─ /api/check        ← Manual entry (calls engine.py)
 ├─ /api/plan         ← Spray schedule (calls engine.py)
 ├─ /api/samples      ← Demo packets (calls samples.py)

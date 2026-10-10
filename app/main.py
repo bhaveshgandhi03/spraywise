@@ -6,7 +6,7 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import Any, Literal
 
-from fastapi import FastAPI, File, Form, Request, UploadFile
+from fastapi import FastAPI, File, Request, UploadFile
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -81,6 +81,7 @@ class CheckIn(BaseModel):
     label: LabelIn
     crop: CropName = "other"
     lang: Lang = "en"
+    scan_confirmed: bool = False
 
 
 class PlanItem(BaseModel):
@@ -127,6 +128,7 @@ def meta(request: Request) -> dict[str, Any]:
         "photo_reading": bool(settings.api_key),
         "sources": ref["sources"],
         "known_gaps": ref["pest_meta"]["known_gaps"],
+        "ban_verification_notes": ref["ban_meta"]["verification_notes"],
         "products": len(ref["products"]),
         "banned_entries": len(ref["banned"]),
     }
@@ -152,7 +154,8 @@ def sample(sample_id: str, request: Request, crop: CropName | None = None, lang:
 @app.post("/api/check")
 def check(body: CheckIn, request: Request) -> dict[str, Any]:
     _guard(request, limit_other)
-    return _finish(body.label.model_dump(), body.crop, body.lang, "manual", with_summary=True)
+    source = "scan" if body.scan_confirmed else "manual"
+    return _finish(body.label.model_dump(), body.crop, body.lang, source, with_summary=True)
 
 
 @app.post("/api/plan")
@@ -167,14 +170,7 @@ def make_plan(body: PlanIn, request: Request) -> dict[str, Any]:
     )
 
 
-@app.post("/api/analyze")
-async def analyze_photo(
-    request: Request,
-    image: UploadFile = File(...),
-    crop: CropName = Form("other"),
-    lang: Lang = Form("en"),
-) -> dict[str, Any]:
-    _guard(request, limit_analyze)
+async def _read_photo(request: Request, image: UploadFile) -> dict[str, Any]:
     if not settings.api_key:
         raise ApiError(503, "nollm")
 
@@ -202,7 +198,18 @@ async def analyze_photo(
 
     if not label["readable"] or not label["ingredients"]:
         raise ApiError(422, "unreadable")
-    return _finish(label, crop, lang, "scan", with_summary=True)
+    return label
+
+
+@app.post("/api/read-label")
+async def read_label(request: Request, image: UploadFile = File(...)) -> dict[str, Any]:
+    _guard(request, limit_analyze)
+    return {"label": await _read_photo(request, image)}
+
+
+@app.post("/api/analyze")
+def analyze_photo_legacy() -> None:
+    raise ApiError(409, "confirmation_required")
 
 
 # Static site last, so /api/* wins.

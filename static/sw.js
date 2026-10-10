@@ -1,5 +1,5 @@
 /* Service worker: lets the app shell open with no signal. API calls are never cached. */
-const CACHE = "spraywise-v2";
+const CACHE = "spraywise-v3";
 const SHELL = ["/", "/style.css", "/app.js", "/i18n.json", "/icon.svg", "/manifest.webmanifest"];
 
 self.addEventListener("install", (e) => {

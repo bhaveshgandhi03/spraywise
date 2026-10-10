@@ -103,6 +103,33 @@ def test_thiophanate_methyl_is_not_flagged_as_methyl_bromide():
 def test_exact_match_gives_waiting_period():
     res = e.analyze(label("Hexaconazole", "5%", "EC"), "paddy", TODAY)
     assert res["reference"]["match"] == "exact" and res["waiting"]["days"] == 40
+    assert res["coverage"] == {
+        "status": "use_in_reference",
+        "product_in_reference": True,
+        "crop_in_reference": True,
+    }
+
+
+def test_unlisted_product_is_never_presented_as_verified():
+    res = e.analyze(label("Unknown pesticide", "10%", "EC", printed_waiting_period="14 days"), "paddy", TODAY)
+    assert res["coverage"]["status"] == "product_unverified"
+    assert res["coverage"]["product_in_reference"] is False
+    assert res["verdict"] == "warning" and "NOT_IN_REFERENCE" in codes(res)
+    assert res["waiting"]["days"] == 14 and res["waiting"]["source"] == "label"
+
+
+def test_known_product_on_unsupported_crop_is_not_presented_as_verified():
+    res = e.analyze(label("Hexaconazole", "5%", "EC"), "other", TODAY)
+    assert res["coverage"]["status"] == "crop_unverified"
+    assert res["coverage"]["product_in_reference"] is True
+    assert res["coverage"]["crop_in_reference"] is False
+
+
+def test_known_product_with_label_crop_mismatch_is_not_presented_as_verified():
+    res = e.analyze(label("Hexaconazole", "5%", "EC", printed_crops=["Groundnut"]), "paddy", TODAY)
+    assert res["coverage"]["status"] == "crop_unverified"
+    assert res["coverage"]["crop_in_reference"] is False
+    assert "LABEL_CROP_MISSING" in codes(res)
 
 
 def test_waiting_not_borrowed_from_another_formulation():

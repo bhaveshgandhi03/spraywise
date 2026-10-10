@@ -8,7 +8,8 @@
 - [x] `requirements.txt` - google-genai dependency added
 - [x] `.env.example` - Variable names updated
 - [x] `render.yaml` - Deployment config updated
-- [x] No breaking changes (100% compatible)
+- [x] Photo scans require users to confirm extracted fields before rule checks
+- [x] Legacy `/api/analyze` route returns 409 and points clients to the confirmation flow
 - [x] All tests still pass (mocked LLM)
 
 ### Documentation
@@ -185,7 +186,8 @@
 - [ ] `/api/health` returns status
 - [ ] `/api/samples` returns list
 - [ ] `/api/meta` returns metadata
-- [ ] `/api/analyze` works with image
+- [ ] `/api/read-label` returns fields for confirmation
+- [ ] `/api/check` runs after the extracted fields are confirmed
 - [ ] `/api/check` works with manual data
 - [ ] `/api/plan` works with spray dates
 - [ ] Rate limiting works

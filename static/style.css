@@ -94,6 +94,7 @@ p { margin: 0 0 12px; }
 .verdict[data-v="info"] { background: #e8eee6; color: var(--ink); }
 .result .body { padding: 14px 16px 16px; }
 .badge { display: inline-block; font-size: 0.8125rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: #e8eee6; margin-bottom: 8px; }
+.coverage-note { border: 2px solid var(--marigold); background: var(--warn-bg); color: #5c3200; padding: 10px 12px; border-radius: 10px; font-weight: 600; margin: 0 0 14px; }
 .facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 0 0 14px; }
 .facts dt { color: var(--ink-2); font-size: 0.9375rem; }
 .facts dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }

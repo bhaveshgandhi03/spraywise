@@ -21,7 +21,7 @@
 | `render.yaml` | Config updated for Render | 🟢 Deployment config |
 
 ### Results
-- ✅ 100% backward compatible (no breaking changes)
+- ✅ Scanned fields must be confirmed before safety checks
 - ✅ All existing tests still pass (mocked LLM)
 - ✅ Cost: **$0.075/1M tokens** (vs $3/1M for Anthropic)
 - ✅ Free tier: **1500 requests/day** (enough for hackathons)
@@ -128,11 +128,12 @@ uvicorn app.main:app --reload
 - **Hosting**: Render free tier
 - **Database**: None (stateless)
 
-### API Endpoints (No Changes)
+### API Endpoints
 | Endpoint | Needs Key |
 |----------|-----------|
-| `/api/analyze` (photo) | ✅ Yes |
-| `/api/check` (manual) | ❌ No |
+| `/api/read-label` (photo fields for confirmation) | ✅ Yes |
+| `/api/check` (confirmed label analysis) | ❌ No |
+| `/api/analyze` (legacy; returns 409 to require confirmation) | ❌ No |
 | `/api/plan` (schedule) | ❌ No |
 | `/api/samples` | ❌ No |
 | `/api/health` | ❌ No |
@@ -258,8 +259,8 @@ By reading this integration, you'll learn:
 ### 1. Provider Agnostic
 Can easily switch to Anthropic, OpenAI, etc. by changing only `llm.py`.
 
-### 2. Zero Breaking Changes
-100% backward compatible. Existing code unchanged.
+### 2. Reviewable photo scans
+Users can confirm/correct extracted ingredient, strength, and formulation before the rules engine runs. The legacy `/api/analyze` route returns 409; use `/api/read-label` followed by `/api/check`.
 
 ### 3. Comprehensive Documentation
 7 guides covering every angle (setup, deployment, architecture, code changes).
@@ -335,7 +336,7 @@ RATE_ANALYZE_PER_MIN=6
 - ✅ Google Gemini API integrated
 - ✅ Free tier working (1500/day)
 - ✅ Code changes minimal & modular
-- ✅ No breaking changes
+- ✅ Photo checks require a confirmation step
 - ✅ Fully documented (7 guides)
 - ✅ Ready for local development
 - ✅ Ready for Render deployment

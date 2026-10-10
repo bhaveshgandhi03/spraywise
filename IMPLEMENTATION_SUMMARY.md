@@ -12,7 +12,7 @@
 ### New Architecture  
 - **Provider**: Google Gemini (FREE tier)
 - **Functions**: Photo reading + AI explanations (optional)
-- **Status**: Fully backward compatible, better price
+- **Status**: Photo scanning now requires user confirmation; the legacy `/api/analyze` route returns 409.
 
 ---
 
@@ -70,15 +70,12 @@ GOOGLE_GEMINI_MODEL: gemini-2.0-flash
 
 ---
 
-## ✨ Unchanged (Fully Compatible)
-- `app/main.py` - No changes (abstracted through `llm` module)
-- `app/engine.py` - No changes (pure Python rules)
-- `app/security.py` - No changes
-- Frontend code - No changes
-- Tests - No changes (mocked `llm` functions)
-- Database schema - No changes
-
-**Result**: Drop-in replacement for AI provider only!
+## ✨ Safety and coverage safeguards
+- `app/main.py` - Reads images separately; runs checks after fields are confirmed.
+- `app/engine.py` - Returns explicit product/crop reference coverage status.
+- Frontend - Lets users review and correct extracted safety-critical label fields.
+- Tests - Cover confirmation flow and unknown product/crop results.
+- Dataset - Not expanded with unverified product claims; the About view exposes sources and known gaps.
 
 ---
 
@@ -162,7 +159,8 @@ curl http://localhost:8000/api/health
 curl http://localhost:8000/api/samples
 
 # Test photo upload
-# POST to http://localhost:8000/api/analyze
+# POST image to http://localhost:8000/api/read-label, confirm the fields,
+# then POST the confirmed label to http://localhost:8000/api/check
 ```
 
 ---
@@ -344,11 +342,12 @@ GOOGLE_GEMINI_MODEL=gemini-1.5-pro
 | Endpoint | Purpose | Needs Key |
 |----------|---------|-----------|
 | `GET /api/health` | Status check | ❌ |
-| `POST /api/analyze` | Upload photo | ✅ |
-| `POST /api/check` | Manual label entry | ❌ |
+| `POST /api/read-label` | Read photo for confirmation | ✅ |
+| `POST /api/check` | Analyze confirmed scanned or manual fields | ❌ |
+| `POST /api/analyze` | Legacy route; returns 409 because confirmation is required | ❌ |
 | `POST /api/plan` | Spray schedule | ❌ |
 | `GET /api/samples` | Sample packets | ❌ |
-| `GET /api/meta` | Metadata | ❌ |
+| `GET /api/meta` | Metadata, sources, and coverage gaps | ❌ |
 
 **Note**: Most endpoints work without API key! Only photo upload needs it.
 
@@ -388,6 +387,6 @@ GOOGLE_GEMINI_MODEL=gemini-1.5-pro
 
 ## 🎉 You're Ready!
 
-The project is now configured for Google Gemini API. All changes are backward compatible, and the app works perfectly without an API key for rules/search/planning features.
+The project is configured for Google Gemini API. Rules, search, and planning work without an API key. Photo scans require confirmation before checks; old clients should use `/api/read-label` followed by `/api/check`.
 
 **Next action**: Create `.env` and run locally! 🚀
