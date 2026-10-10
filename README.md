@@ -106,7 +106,7 @@ python scripts/try_photo.py my_packet.jpg paddy
 |---|---|
 | `GET /api/health` | Status, whether photo reading is on, data counts |
 | `POST /api/read-label` | Photo (multipart) → extracted fields for the user to confirm |
-| `POST /api/check` | Typed label fields → the same analysis, no AI needed |
+| `POST /api/check` | Confirmed scanned fields or manually typed label → rules-based analysis |
 | `POST /api/analyze` | Legacy route; returns 409 so clients use the confirmation flow |
 | `POST /api/plan` | Spray list → earliest harvest date and duplicate-ingredient warnings |
 | `GET /api/samples`, `GET /api/sample/{id}` | Fictional packets for demos |
