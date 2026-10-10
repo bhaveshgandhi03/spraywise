@@ -1,0 +1,906 @@
+{
+  "_meta": {
+    "purpose": "KisanRakshak reference data. The app must show only facts present here or on the scanned label; an empty (null) value means 'check the label'.",
+    "crops_covered": [
+      "tomato",
+      "groundnut",
+      "paddy"
+    ],
+    "generated": "2026-10-10",
+    "how_values_were_obtained": "Rows were read from the official CIB&RC 'Major Uses of Pesticides' PDFs (sources S1, S2) using an automated page reader, because the PDFs could not be downloaded directly. Each value is copied as printed. SPOT-CHECK every entry you plan to demo against the PDF before submission.",
+    "known_gaps": [
+      "Insecticide list covers actives A-C only (e.g. imidacloprid, thiamethoxam, lambda-cyhalothrin, profenofos are NOT included).",
+      "No herbicides: the only herbicide document found is dated 2014 and still lists products since banned or restricted (alachlor, paraquat, oxyfluorfen on groundnut).",
+      "safety_notes is null for every entry: no official safety text was retrieved. Fill it from the packet label or the CIB&RC label and leaflet.",
+      "crop_claims only list the three project crops; a product may have other registered crops that are not shown.",
+      "Waiting period is crop and pest specific; the numeric field is empty when the source printed a dash, a blank or a range."
+    ],
+    "field_notes": {
+      "waiting_period_days": "Numeric only when the source printed a single number; the exact printed text is in waiting_period_as_printed.",
+      "dose_as_printed": "Informational. CIB&RC columns are a.i. (g or kg/ha), formulation (g or ml/ha), dilution (L/ha); units are not always printed. The app should quote the dose from the label, not from here."
+    }
+  },
+  "sources": {
+    "S1": {
+      "title": "CIB&RC - Major Uses of Pesticides (Fungicides), as on 31/03/2024",
+      "issuer": "Central Insecticides Board & Registration Committee, DPPQS, Ministry of Agriculture & Farmers Welfare, Govt of India",
+      "url": "https://ppqs.gov.in/sites/default/files/fungicides_31.03.2024.pdf",
+      "as_on": "2024-03-31"
+    },
+    "S2": {
+      "title": "CIB&RC - Major Uses of Pesticides (Insecticides, bio-pesticides), up to 01/02/2023",
+      "issuer": "Central Insecticides Board & Registration Committee, DPPQS, Ministry of Agriculture & Farmers Welfare, Govt of India (copy hosted by Odisha agriculture dept)",
+      "url": "https://odishaagrilicense.nic.in/public/actsRules/CIB%20Pesticides.pdf1.pdf",
+      "as_on": "2023-02-01",
+      "coverage_note": "Only the part of the insecticide list from A to C (up to Cyantraniliprole) could be read; later actives are NOT included."
+    },
+    "S3": {
+      "title": "Pesticides/Pesticide formulations banned in India (ICAR-IISR page, includes Oct 2023 additions)",
+      "issuer": "ICAR - Indian Institute of Spices Research (republishes the CIB&RC list)",
+      "url": "https://spices.res.in/pages/pesticides-formulations-banned-in-india",
+      "as_on": null
+    },
+    "S4": {
+      "title": "List of pesticides which are banned, refused registration, withdrawn, restricted - as on 30.06.2020",
+      "issuer": "Himachal Pradesh Dept of Agriculture (copy of the Govt of India list)",
+      "url": "https://hds.hp.gov.in/UploadedImages/RichTextDocument/list_of_pesticides_which_are_banned_20210310.pdf",
+      "as_on": "2020-06-30"
+    },
+    "S5": {
+      "title": "Insecticides (Prohibition) Order, 2023 (dated 29 Sep 2023)",
+      "issuer": "Ministry of Agriculture & Farmers Welfare, Govt of India (text via a legal database)",
+      "url": "https://www.legitquest.com/act/insecticides-prohibition-order-2023/E1BF",
+      "as_on": "2023-09-29"
+    },
+    "S6": {
+      "title": "India bans paraquat, cancels existing certificates - S.O. 5234(E) dated 22 Sep 2026",
+      "issuer": "Trade news report citing the Ministry order; NOT the Gazette itself",
+      "url": "https://www.global-agriculture.com/crop-protection/india-bans-paraquat-cancels-existing-certificates/",
+      "as_on": "2026-09-22"
+    },
+    "S7": {
+      "title": "CIB&RC public notice listing the official lists published on the PPQS website (14 June 2023)",
+      "issuer": "CIB&RC, DPPQS, Faridabad",
+      "url": "https://ppqs.gov.in/sites/default/files/public_notice-updation.pdf",
+      "as_on": "2023-06-14"
+    }
+  },
+  "pesticides": [
+    {
+      "id": "azoxystrobin-23pct-sc",
+      "name": "Azoxystrobin 23% SC",
+      "active_ingredient": "azoxystrobin",
+      "formulation": "23% SC",
+      "type": "fungicide",
+      "listed_crops": [
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Early blight, Late blight",
+          "waiting_period_days": 3,
+          "waiting_period_as_printed": "3",
+          "dose_as_printed": "a.i. 125 g; formulation 500 ml; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "mancozeb-75pct-wp",
+      "name": "Mancozeb 75% WP",
+      "active_ingredient": "mancozeb",
+      "formulation": "75% WP",
+      "type": "fungicide",
+      "listed_crops": [
+        "groundnut",
+        "paddy",
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Late blight, Buckeye rot, Leaf spot",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": "-",
+          "dose_as_printed": "a.i. 1.125-1.5 kg; formulation 1.5-2 kg; dilution 750 L"
+        },
+        {
+          "crop": "groundnut",
+          "target": "Tikka disease and rust",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": "-",
+          "dose_as_printed": "a.i. 1.125-1.5 kg; formulation 1.5-2 kg; dilution 750 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Blast",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": "-",
+          "dose_as_printed": "a.i. 1.125-1.5 kg; formulation 1.5-2 kg; dilution 750 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [
+        "Mancozeb: label claims on Guava, Jowar and Tapioca were omitted (Insecticides (Prohibition) Order 2023) - see banned.json"
+      ],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "mancozeb-75pct-wg",
+      "name": "Mancozeb 75% WG",
+      "active_ingredient": "mancozeb",
+      "formulation": "75% WG",
+      "type": "fungicide",
+      "listed_crops": [
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Early blight",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": "5-6",
+          "dose_as_printed": "a.i. 750 g; formulation 1000 g; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [
+        "Mancozeb: label claims on Guava, Jowar and Tapioca were omitted (Insecticides (Prohibition) Order 2023) - see banned.json"
+      ],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "copper-oxychloride-50pct-wp",
+      "name": "Copper oxychloride 50% WP",
+      "active_ingredient": "copper oxychloride",
+      "formulation": "50% WP",
+      "type": "fungicide",
+      "listed_crops": [
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Early blight, Late blight, Leaf spot",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": "-",
+          "dose_as_printed": "a.i. 1.25; formulation 2.5 (kg as printed); dilution 750-1000 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "chlorothalonil-75pct-wp",
+      "name": "Chlorothalonil 75% WP",
+      "active_ingredient": "chlorothalonil",
+      "formulation": "75% WP",
+      "type": "fungicide",
+      "listed_crops": [
+        "groundnut"
+      ],
+      "crop_claims": [
+        {
+          "crop": "groundnut",
+          "target": "Tikka leaf spot, Rust",
+          "waiting_period_days": 14,
+          "waiting_period_as_printed": "14",
+          "dose_as_printed": "a.i. 0.66-0.863; formulation 0.88-1.150 (kg as printed); dilution 600-800 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "hexaconazole-5pct-ec",
+      "name": "Hexaconazole 5% EC",
+      "active_ingredient": "hexaconazole",
+      "formulation": "5% EC",
+      "type": "fungicide",
+      "listed_crops": [
+        "groundnut",
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "groundnut",
+          "target": "Tikka leaf spot",
+          "waiting_period_days": 30,
+          "waiting_period_as_printed": "30",
+          "dose_as_printed": "a.i. 75 g; formulation 1500 ml; dilution 500 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Blast, Sheath blight",
+          "waiting_period_days": 40,
+          "waiting_period_as_printed": "40",
+          "dose_as_printed": "a.i. 50 g; formulation 1000 ml; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "propiconazole-25pct-ec",
+      "name": "Propiconazole 25% EC",
+      "active_ingredient": "propiconazole",
+      "formulation": "25% EC",
+      "type": "fungicide",
+      "listed_crops": [
+        "groundnut",
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "groundnut",
+          "target": "Early leaf spot, Late leaf spot, Rust",
+          "waiting_period_days": 15,
+          "waiting_period_as_printed": "15",
+          "dose_as_printed": "a.i. 125 g; formulation 500 g; dilution 750 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Sheath blight",
+          "waiting_period_days": 30,
+          "waiting_period_as_printed": "30",
+          "dose_as_printed": "a.i. 125 g; formulation 500 g; dilution 750 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "tebuconazole-25_9pct-ec",
+      "name": "Tebuconazole 25.9% EC",
+      "active_ingredient": "tebuconazole",
+      "formulation": "25.9% EC",
+      "type": "fungicide",
+      "listed_crops": [
+        "groundnut",
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "groundnut",
+          "target": "Tikka and rust",
+          "waiting_period_days": 49,
+          "waiting_period_as_printed": "49",
+          "dose_as_printed": "a.i. 0.125-0.1875 kg; formulation 0.500-0.750 L; dilution 500 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Blast, Sheath blight",
+          "waiting_period_days": 10,
+          "waiting_period_as_printed": "10",
+          "dose_as_printed": "a.i. 0.1875 kg; formulation 0.750 L; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "tricyclazole-75pct-wp",
+      "name": "Tricyclazole 75% WP",
+      "active_ingredient": "tricyclazole",
+      "formulation": "75% WP",
+      "type": "fungicide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Blast",
+          "waiting_period_days": 30,
+          "waiting_period_as_printed": "30",
+          "dose_as_printed": "a.i. 225-300 g; formulation 300-400 g; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "carbendazim-50pct-wp",
+      "name": "Carbendazim 50% WP",
+      "active_ingredient": "carbendazim",
+      "formulation": "50% WP",
+      "type": "fungicide",
+      "listed_crops": [
+        "groundnut",
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "groundnut",
+          "target": "Tikka leaf spot",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": "-",
+          "dose_as_printed": "a.i. 112.5 g; formulation 225 g; dilution 750 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Blast (wet slurry treatment)",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": null,
+          "dose_as_printed": "a.i. 125-250 g; formulation 250-500 g; dilution 750 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "pyraclostrobin-20pct-wg",
+      "name": "Pyraclostrobin 20% WG",
+      "active_ingredient": "pyraclostrobin",
+      "formulation": "20% WG",
+      "type": "fungicide",
+      "listed_crops": [
+        "groundnut",
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Early blight",
+          "waiting_period_days": 3,
+          "waiting_period_as_printed": "3",
+          "dose_as_printed": "a.i. 75-100 g; formulation 375-500 g; dilution 500 L"
+        },
+        {
+          "crop": "groundnut",
+          "target": "Tikka disease",
+          "waiting_period_days": 29,
+          "waiting_period_as_printed": "29",
+          "dose_as_printed": "a.i. 100; formulation 500; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "isoprothiolane-40pct-ec",
+      "name": "Isoprothiolane 40% EC",
+      "active_ingredient": "isoprothiolane",
+      "formulation": "40% EC",
+      "type": "fungicide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Blast",
+          "waiting_period_days": 60,
+          "waiting_period_as_printed": "60",
+          "dose_as_printed": "a.i. 300; formulation 750; dilution 500-1000 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "validamycin-3pct-l",
+      "name": "Validamycin 3% L",
+      "active_ingredient": "validamycin",
+      "formulation": "3% L",
+      "type": "fungicide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Sheath blight",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": "There should be no residues on grains and straw of paddy 14 days before the harvest",
+          "dose_as_printed": "a.i. 60 g; formulation 2000 g; dilution 750 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": "Waiting period is printed as a sentence, not a number, so the numeric field is left empty."
+    },
+    {
+      "id": "thiophanate-methyl-41_7pct-sc",
+      "name": "Thiophanate methyl 41.7% SC",
+      "active_ingredient": "thiophanate methyl",
+      "formulation": "41.7% SC",
+      "type": "fungicide",
+      "listed_crops": [
+        "groundnut",
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "groundnut",
+          "target": "Tikka leaf spot",
+          "waiting_period_days": 27,
+          "waiting_period_as_printed": "27",
+          "dose_as_printed": "a.i. 500; formulation 1000; dilution 500 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Blast, Sheath rot, Grain discoloration",
+          "waiting_period_days": 37,
+          "waiting_period_as_printed": "37",
+          "dose_as_printed": "a.i. 500; formulation 1000; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "kasugamycin-3pct-sl",
+      "name": "Kasugamycin 3% SL",
+      "active_ingredient": "kasugamycin",
+      "formulation": "3% SL",
+      "type": "fungicide",
+      "listed_crops": [
+        "paddy",
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Early blight",
+          "waiting_period_days": 3,
+          "waiting_period_as_printed": "03",
+          "dose_as_printed": "a.i. 30-37.5; formulation 1000-1250 ml; dilution 500-600 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Blast",
+          "waiting_period_days": 30,
+          "waiting_period_as_printed": "30",
+          "dose_as_printed": "a.i. 30-50 g; formulation 1000-1500 ml; dilution 750-1000 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "iprodione-50pct-wp",
+      "name": "Iprodione 50% WP",
+      "active_ingredient": "iprodione",
+      "formulation": "50% WP",
+      "type": "fungicide",
+      "listed_crops": [
+        "paddy",
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Early blight",
+          "waiting_period_days": 15,
+          "waiting_period_as_printed": "15",
+          "dose_as_printed": "a.i. 0.75 kg; formulation 1.5 kg; dilution 500 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Sheath blight",
+          "waiting_period_days": 35,
+          "waiting_period_as_printed": "35",
+          "dose_as_printed": "a.i. 1.125 kg; formulation 2.25 kg; dilution 750 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "metiram-70pct-wg",
+      "name": "Metiram 70% WG",
+      "active_ingredient": "metiram",
+      "formulation": "70% WG",
+      "type": "fungicide",
+      "listed_crops": [
+        "groundnut",
+        "paddy",
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Alternaria blight",
+          "waiting_period_days": 6,
+          "waiting_period_as_printed": "6",
+          "dose_as_printed": "a.i. 1750 g; formulation 2500 g; dilution 500-750 L"
+        },
+        {
+          "crop": "groundnut",
+          "target": "Tikka",
+          "waiting_period_days": 16,
+          "waiting_period_as_printed": "16",
+          "dose_as_printed": "a.i. 1400 g; formulation 2000 g; dilution 500-750 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Blast and Brown spot",
+          "waiting_period_days": 51,
+          "waiting_period_as_printed": "51",
+          "dose_as_printed": "a.i. 1050-1400; formulation 1500-2000; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "thifluzamide-24pct-sc",
+      "name": "Thifluzamide 24% SC",
+      "active_ingredient": "thifluzamide",
+      "formulation": "24% SC",
+      "type": "fungicide",
+      "listed_crops": [
+        "paddy",
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Early blight",
+          "waiting_period_days": 7,
+          "waiting_period_as_printed": "7",
+          "dose_as_printed": "a.i. 120; formulation 500; dilution 500 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Sheath blight",
+          "waiting_period_days": 28,
+          "waiting_period_as_printed": "28",
+          "dose_as_printed": "a.i. 90 g; formulation 375 g; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S1",
+      "notes": null
+    },
+    {
+      "id": "chlorantraniliprole-18_50pct-sc",
+      "name": "Chlorantraniliprole 18.50% SC",
+      "active_ingredient": "chlorantraniliprole",
+      "formulation": "18.5% SC",
+      "type": "insecticide",
+      "listed_crops": [
+        "paddy",
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Fruit borer",
+          "waiting_period_days": 3,
+          "waiting_period_as_printed": "03",
+          "dose_as_printed": "a.i. 30 g; formulation 150 ml; dilution 500 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Stem borer, Leaf folder",
+          "waiting_period_days": 47,
+          "waiting_period_as_printed": "47",
+          "dose_as_printed": "a.i. 30 g; formulation 150 ml; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "chlorpyrifos-20pct-ec",
+      "name": "Chlorpyrifos 20% EC",
+      "active_ingredient": "chlorpyrifos",
+      "formulation": "20% EC",
+      "type": "insecticide",
+      "listed_crops": [
+        "groundnut",
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "groundnut",
+          "target": "Aphid, Root grub",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": null,
+          "dose_as_printed": "a.i. 200 (aphid) / 225 (root grub); formulation 1000 / 1125; dilution 500-1000 L"
+        },
+        {
+          "crop": "paddy",
+          "target": "Hispa, Leaf folder, Gall midge, Stem borer, Whorl maggot",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": null,
+          "dose_as_printed": "a.i. 250-375; formulation 1250-1875; dilution 500-1000 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [
+        "Chlorpyriphos: label claims on Ber, Citrus and Tobacco were omitted (Insecticides (Prohibition) Order 2023) - see banned.json"
+      ],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "chlorpyrifos-50pct-ec",
+      "name": "Chlorpyrifos 50% EC",
+      "active_ingredient": "chlorpyrifos",
+      "formulation": "50% EC",
+      "type": "insecticide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Stem borer, Leaf folder",
+          "waiting_period_days": 15,
+          "waiting_period_as_printed": "15",
+          "dose_as_printed": "a.i. 375-400; formulation 750-800; dilution 500-1000 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [
+        "Chlorpyriphos: label claims on Ber, Citrus and Tobacco were omitted (Insecticides (Prohibition) Order 2023) - see banned.json"
+      ],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "acephate-75pct-sp",
+      "name": "Acephate 75% SP",
+      "active_ingredient": "acephate",
+      "formulation": "75% SP",
+      "type": "insecticide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Yellow stem borer, Leaf folder, Plant hoppers, Green leafhopper",
+          "waiting_period_days": 15,
+          "waiting_period_as_printed": "15",
+          "dose_as_printed": "a.i. 500-750; formulation printed as '666 - 100' (garbled in source); dilution 300-500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "buprofezin-25pct-sc",
+      "name": "Buprofezin 25% SC",
+      "active_ingredient": "buprofezin",
+      "formulation": "25% SC",
+      "type": "insecticide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Brown plant hopper, Green leaf hopper, White backed plant hopper",
+          "waiting_period_days": 20,
+          "waiting_period_as_printed": "20",
+          "dose_as_printed": "a.i. 200; formulation 800; dilution 400-500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "clothianidin-50pct-wdg",
+      "name": "Clothianidin 50% WDG",
+      "active_ingredient": "clothianidin",
+      "formulation": "50% WDG",
+      "type": "insecticide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Brown plant hopper",
+          "waiting_period_days": 12,
+          "waiting_period_as_printed": "12",
+          "dose_as_printed": "a.i. 10-12; formulation 20-24; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "acetamiprid-20pct-sp",
+      "name": "Acetamiprid 20% SP",
+      "active_ingredient": "acetamiprid",
+      "formulation": "20% SP",
+      "type": "insecticide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Brown plant hopper",
+          "waiting_period_days": 7,
+          "waiting_period_as_printed": "07",
+          "dose_as_printed": "a.i. 10-20; formulation 50-100; dilution 500-600 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "carbosulfan-25pct-ec",
+      "name": "Carbosulfan 25% EC",
+      "active_ingredient": "carbosulfan",
+      "formulation": "25% EC",
+      "type": "insecticide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Green leaf hopper, WBPH, Brown plant hopper, Gall midge, Stem borer, Leaf folder",
+          "waiting_period_days": 14,
+          "waiting_period_as_printed": "14",
+          "dose_as_printed": "a.i. 200-250; formulation 800-1000; dilution 500-1000 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "cartap-hydrochloride-50pct-sp",
+      "name": "Cartap hydrochloride 50% SP",
+      "active_ingredient": "cartap hydrochloride",
+      "formulation": "50% SP",
+      "type": "insecticide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Stem borer, Leaf folder",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": null,
+          "dose_as_printed": "a.i. 500; formulation 1000; dilution 500-1000 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "carbofuran-3pct-cg",
+      "name": "Carbofuran 3% CG",
+      "active_ingredient": "carbofuran",
+      "formulation": "3% CG",
+      "type": "insecticide",
+      "listed_crops": [
+        "groundnut",
+        "paddy",
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Whitefly",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": null,
+          "dose_as_printed": "a.i. 1200; formulation 40000"
+        },
+        {
+          "crop": "groundnut",
+          "target": "Pod borer, White grub",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": null,
+          "dose_as_printed": "a.i. 1500 / 1000; formulation 50000 / 33300"
+        },
+        {
+          "crop": "paddy",
+          "target": "Brown plant hopper, Gall midge, Stem borer, Green leaf hopper, Hispa, Nematodes",
+          "waiting_period_days": null,
+          "waiting_period_as_printed": null,
+          "dose_as_printed": "a.i. 750 / 1500; formulation 25000 / 50000"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [
+        "Carbofuran: only the 3% CG formulation keeps its label claims; Carbofuran 50% SP is banned (Insecticides (Prohibition) Order 2023; banned-formulation list) - see banned.json"
+      ],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "broflanilide-300-g-l-sc",
+      "name": "Broflanilide 300 g/L SC",
+      "active_ingredient": "broflanilide",
+      "formulation": "300 g/L SC",
+      "type": "insecticide",
+      "listed_crops": [
+        "tomato"
+      ],
+      "crop_claims": [
+        {
+          "crop": "tomato",
+          "target": "Fruit borer (Helicoverpa armigera), Leaf miner (Liriomyza trifolii)",
+          "waiting_period_days": 1,
+          "waiting_period_as_printed": "1",
+          "dose_as_printed": "a.i. 18.6-25.2 g; formulation 62-84 ml; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S2",
+      "notes": null
+    },
+    {
+      "id": "bifenthrin-10pct-ec",
+      "name": "Bifenthrin 10% EC",
+      "active_ingredient": "bifenthrin",
+      "formulation": "10% EC",
+      "type": "insecticide",
+      "listed_crops": [
+        "paddy"
+      ],
+      "crop_claims": [
+        {
+          "crop": "paddy",
+          "target": "Stem borer, Leaf folder, Green leaf hopper",
+          "waiting_period_days": 21,
+          "waiting_period_as_printed": "21",
+          "dose_as_printed": "a.i. 50; formulation 500; dilution 500 L"
+        }
+      ],
+      "safety_notes": null,
+      "regulatory_flags": [],
+      "source": "S2",
+      "notes": null
+    }
+  ]
+}

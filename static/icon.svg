@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <symbol id="m" viewBox="0 0 32 32">
+      <path d="M16 2 4 6v9c0 7.2 4.7 12.3 12 15 7.300-2.700 12-7.800 12-15V6z" fill="#2d6a3e"/>
+      <path d="M16 24c-5 0-7.500-3.500-7.500-8 4.500 0 7.500 1.800 7.500 8Zm0 0c0-6.200 3-8 7.500-8 0 4.500-2.500 8-7.500 8Z" fill="#f1f4ee"/>
+      <path d="M16 11v13" stroke="#2d6a3e" stroke-width="1.200"/>
+      <path d="M4 25h24v-2.500H4z" fill="#f2a900" transform="translate(0 2)"/>
+    </symbol>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="#14231a"/>
+  <use href="#m" x="3" y="3" width="26" height="26"/>
+</svg>

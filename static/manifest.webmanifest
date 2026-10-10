@@ -1,0 +1,10 @@
+{
+  "name": "SprayWise",
+  "short_name": "SprayWise",
+  "description": "Read a pesticide packet and check it against official Indian lists.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f1f4ee",
+  "theme_color": "#14231a",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

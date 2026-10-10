@@ -1,0 +1,1188 @@
+{
+  "_meta": {
+    "purpose": "Banned, withdrawn, refused and restricted pesticides in India, for the KisanRakshak banned/restricted alert.",
+    "generated": "2026-10-10",
+    "match_rule": "Match the scanned active ingredient against active_ingredient and aliases (case-insensitive). status 'crop_claims_removed' only matters when the user's crop is in crops_affected.",
+    "status_values": {
+      "banned_manufacture_import_use": "Banned for manufacture, import and use.",
+      "banned_formulation": "A specific formulation is banned.",
+      "banned_use_manufacture_for_export_only": "Banned for use in India; manufacture for export allowed.",
+      "withdrawn": "Withdrawn by the Registration Committee.",
+      "refused_registration": "Registration was refused.",
+      "restricted": "Allowed only under conditions.",
+      "crop_claims_removed": "The product exists, but the listed crops were removed from its label claims.",
+      "prohibited_reported_unverified": "Reported ban found in a secondary source only."
+    },
+    "verification_notes": [
+      "The official CIB&RC/PPQS pages for the banned list could not be opened here. Entries come from the ICAR-IISR page (S3), a Himachal Pradesh copy of the Govt of India list dated 30.06.2020 (S4), and the text of the 2023 Prohibition Order (S5).",
+      "Check this file against the current list on ppqs.gov.in (CIB&RC section) before submission; a ban may have been added after the sources used here.",
+      "'Paraquat Dimethyl Sulphate' (long banned) and 'Paraquat dichloride' (reported banned Sep 2026) are different entries."
+    ]
+  },
+  "sources": {
+    "S1": {
+      "title": "CIB&RC - Major Uses of Pesticides (Fungicides), as on 31/03/2024",
+      "issuer": "Central Insecticides Board & Registration Committee, DPPQS, Ministry of Agriculture & Farmers Welfare, Govt of India",
+      "url": "https://ppqs.gov.in/sites/default/files/fungicides_31.03.2024.pdf",
+      "as_on": "2024-03-31"
+    },
+    "S2": {
+      "title": "CIB&RC - Major Uses of Pesticides (Insecticides, bio-pesticides), up to 01/02/2023",
+      "issuer": "Central Insecticides Board & Registration Committee, DPPQS, Ministry of Agriculture & Farmers Welfare, Govt of India (copy hosted by Odisha agriculture dept)",
+      "url": "https://odishaagrilicense.nic.in/public/actsRules/CIB%20Pesticides.pdf1.pdf",
+      "as_on": "2023-02-01",
+      "coverage_note": "Only the part of the insecticide list from A to C (up to Cyantraniliprole) could be read; later actives are NOT included."
+    },
+    "S3": {
+      "title": "Pesticides/Pesticide formulations banned in India (ICAR-IISR page, includes Oct 2023 additions)",
+      "issuer": "ICAR - Indian Institute of Spices Research (republishes the CIB&RC list)",
+      "url": "https://spices.res.in/pages/pesticides-formulations-banned-in-india",
+      "as_on": null
+    },
+    "S4": {
+      "title": "List of pesticides which are banned, refused registration, withdrawn, restricted - as on 30.06.2020",
+      "issuer": "Himachal Pradesh Dept of Agriculture (copy of the Govt of India list)",
+      "url": "https://hds.hp.gov.in/UploadedImages/RichTextDocument/list_of_pesticides_which_are_banned_20210310.pdf",
+      "as_on": "2020-06-30"
+    },
+    "S5": {
+      "title": "Insecticides (Prohibition) Order, 2023 (dated 29 Sep 2023)",
+      "issuer": "Ministry of Agriculture & Farmers Welfare, Govt of India (text via a legal database)",
+      "url": "https://www.legitquest.com/act/insecticides-prohibition-order-2023/E1BF",
+      "as_on": "2023-09-29"
+    },
+    "S6": {
+      "title": "India bans paraquat, cancels existing certificates - S.O. 5234(E) dated 22 Sep 2026",
+      "issuer": "Trade news report citing the Ministry order; NOT the Gazette itself",
+      "url": "https://www.global-agriculture.com/crop-protection/india-bans-paraquat-cancels-existing-certificates/",
+      "as_on": "2026-09-22"
+    },
+    "S7": {
+      "title": "CIB&RC public notice listing the official lists published on the PPQS website (14 June 2023)",
+      "issuer": "CIB&RC, DPPQS, Faridabad",
+      "url": "https://ppqs.gov.in/sites/default/files/public_notice-updation.pdf",
+      "as_on": "2023-06-14"
+    }
+  },
+  "entries": [
+    {
+      "active_ingredient": "Alachlor",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Aldicarb",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 682(E), 17.07.2001",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Aldrin",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Benzene Hexachloride",
+      "aliases": [
+        "BHC"
+      ],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Benomyl",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Calcium Cyanide",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Carbaryl",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Chlorbenzilate",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 682(E), 17.07.2001",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Chlordane",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Chlorofenvinphos",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Copper Acetoarsenite",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Diazinon",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Dibromochloropropane (DBCP)",
+      "aliases": [
+        "DBCP"
+      ],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 569(E), 25.07.1989",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Dichlorvos",
+      "aliases": [
+        "Dichlorovos"
+      ],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": "Banned for use; manufacture for export continues under S.O. 1196(E), 20.03.2020.",
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Dicofol",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 4294(E), 03.10.2023",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Dieldrin",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 682(E), 17.07.2001",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Dinocap",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 4294(E), 03.10.2023",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Endosulfan",
+      "aliases": [
+        "Endosulfron"
+      ],
+      "status": "banned_manufacture_import_use",
+      "notification": "Supreme Court of India, WP(C) 213 of 2011: ad-interim order 13.05.2011, finally disposed 10.01.2017",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Endrin",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Ethyl Mercury Chloride",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Ethyl Parathion",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Ethylene Dibromide (EDB)",
+      "aliases": [
+        "EDB"
+      ],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 682(E), 17.07.2001",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Fenarimol",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Fenthion",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Heptachlor",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Lindane",
+      "aliases": [
+        "Gamma-HCH"
+      ],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Linuron",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Maleic Hydrazide",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 682(E), 17.07.2001",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Menazon",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Methomyl",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 4294(E), 03.10.2023",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Methoxy Ethyl Mercury Chloride",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Methyl Parathion",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Metoxuron",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Nitrofen",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Paraquat Dimethyl Sulphate",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Pentachloro Nitrobenzene (PCNB)",
+      "aliases": [
+        "PCNB"
+      ],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 569(E), 25.07.1989",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Pentachlorophenol",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Phenyl Mercury Acetate",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Phorate",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": "Banned for use; manufacture for export continues under S.O. 1196(E), 20.03.2020.",
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Phosphamidon",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Sodium Methane Arsonate",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Tetradifon",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": null,
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Thiometon",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Toxaphene (Camphechlor)",
+      "aliases": [
+        "Camphechlor"
+      ],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 569(E), 25.07.1989",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Triazophos",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": "Banned for use; manufacture for export continues under S.O. 1196(E), 20.03.2020.",
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Tridemorph",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Trichloro acetic acid (TCA)",
+      "aliases": [
+        "TCA"
+      ],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 682(E), 17.07.2001",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Trichlorfon",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Sodium Cyanide",
+      "aliases": [],
+      "status": "banned_manufacture_import_use",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": "Banned for insecticidal purposes only; regulation continues as before for non-insecticidal uses.",
+      "crops_affected": null,
+      "source": [
+        "S3"
+      ]
+    },
+    {
+      "active_ingredient": "Carbofuran 50% SP",
+      "aliases": [
+        "Carbofuron"
+      ],
+      "status": "banned_formulation",
+      "notification": "S.O. 678(E), 17.07.2001",
+      "detail": "Only the 3% CG formulation of carbofuran keeps its label claims.",
+      "crops_affected": null,
+      "source": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "active_ingredient": "Captafol 80% Powder",
+      "aliases": [],
+      "status": "banned_use_manufacture_for_export_only",
+      "notification": "S.O. 679(E), 17.07.2001",
+      "detail": "Foliar spray banned; seed dressing only restriction also applies (S.O. 569(E), 25.07.1989).",
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Nicotine Sulfate",
+      "aliases": [
+        "Nicotin Sulfate"
+      ],
+      "status": "banned_use_manufacture_for_export_only",
+      "notification": "S.O. 325(E), 11.05.1992",
+      "detail": null,
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Dalapon",
+      "aliases": [],
+      "status": "withdrawn",
+      "notification": null,
+      "detail": "Withdrawn; may be reinstated if complete data is submitted and accepted by the Registration Committee (S.O. 915(E), 15.06.2006).",
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Ferbam",
+      "aliases": [],
+      "status": "withdrawn",
+      "notification": null,
+      "detail": "Withdrawn; may be reinstated if complete data is submitted and accepted by the Registration Committee (S.O. 915(E), 15.06.2006).",
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Formothion",
+      "aliases": [],
+      "status": "withdrawn",
+      "notification": null,
+      "detail": "Withdrawn; may be reinstated if complete data is submitted and accepted by the Registration Committee (S.O. 915(E), 15.06.2006).",
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Nickel Chloride",
+      "aliases": [],
+      "status": "withdrawn",
+      "notification": null,
+      "detail": "Withdrawn; may be reinstated if complete data is submitted and accepted by the Registration Committee (S.O. 915(E), 15.06.2006).",
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Paradichlorobenzene (PDCB)",
+      "aliases": [],
+      "status": "withdrawn",
+      "notification": null,
+      "detail": "Withdrawn; may be reinstated if complete data is submitted and accepted by the Registration Committee (S.O. 915(E), 15.06.2006).",
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Simazine",
+      "aliases": [],
+      "status": "withdrawn",
+      "notification": null,
+      "detail": "Withdrawn; may be reinstated if complete data is submitted and accepted by the Registration Committee (S.O. 915(E), 15.06.2006).",
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Sirmate",
+      "aliases": [],
+      "status": "withdrawn",
+      "notification": "S.O. 2485(E), 24.09.2014",
+      "detail": "Withdrawn; may be reinstated if complete data is submitted and accepted by the Registration Committee (S.O. 915(E), 15.06.2006).",
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Warfarin",
+      "aliases": [],
+      "status": "withdrawn",
+      "notification": "S.O. 915(E), 15.06.2006",
+      "detail": "Withdrawn; may be reinstated if complete data is submitted and accepted by the Registration Committee (S.O. 915(E), 15.06.2006).",
+      "crops_affected": null,
+      "source": [
+        "S3",
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "2,4,5-T",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Ammonium Sulphamate",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Azinphos Ethyl",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Azinphos Methyl",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Binapacryl",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Calcium Arsenate",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Carbophenothion",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Chinomethionate (Morestan)",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Dicrotophos",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "EPN",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Fentin Acetate",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Fentin Hydroxide",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Lead Arsenate",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Leptophos (Phosvel)",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Mephosfolan",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Mevinphos (Phosdrin)",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Thiodemeton / Disulfoton",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Vamidothion",
+      "aliases": [],
+      "status": "refused_registration",
+      "notification": null,
+      "detail": "Refused registration (no date printed in source).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Aluminium Phosphide",
+      "aliases": [],
+      "status": "restricted",
+      "notification": "G.S.R. 371(E), 20.05.1999",
+      "detail": "Use only by government bodies, licensed operators under expert supervision, or experts approved by the Plant Protection Advisor. Tube packs of 10 or 20 tablets banned (S.O. 677(E), 17.07.2001).",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Captafol",
+      "aliases": [],
+      "status": "restricted",
+      "notification": "S.O. 569(E), 25.07.1989",
+      "detail": "Foliar spray banned; seed dressing only.",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Cypermethrin 3% smoke generator",
+      "aliases": [],
+      "status": "restricted",
+      "notification": "Delhi High Court WP(C) 10052/2009",
+      "detail": "For pest control operators only, not the general public.",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Dazomet",
+      "aliases": [],
+      "status": "restricted",
+      "notification": "S.O. 3006(E), 31.12.2008",
+      "detail": "Not permitted on tea.",
+      "crops_affected": [
+        "tea"
+      ],
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "DDT",
+      "aliases": [],
+      "status": "restricted",
+      "notification": "S.O. 295(E), 08.03.2006",
+      "detail": "Agricultural use withdrawn; limited public-health use only.",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Fenitrothion",
+      "aliases": [],
+      "status": "restricted",
+      "notification": "S.O. 706(E), 03.05.2007",
+      "detail": "Banned in agriculture except locust control in scheduled desert areas, and public health.",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Methyl Bromide",
+      "aliases": [],
+      "status": "restricted",
+      "notification": "G.S.R. 371(E), 20.05.1999",
+      "detail": "Only government bodies, licensed operators or experts approved by the Plant Protection Advisor.",
+      "crops_affected": null,
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Monocrotophos",
+      "aliases": [],
+      "status": "restricted",
+      "notification": "S.O. 1482(E), 10.10.2005; Insecticides (Prohibition) Order 2023",
+      "detail": "Banned on vegetables. The 36% SL formulation is being discontinued: no new registrations, certificates cancelled after one year, existing stock may be sold until expiry.",
+      "crops_affected": [
+        "vegetables (includes tomato)"
+      ],
+      "source": [
+        "S4",
+        "S5"
+      ]
+    },
+    {
+      "active_ingredient": "Trifluralin",
+      "aliases": [],
+      "status": "restricted",
+      "notification": "S.O. 3951(E), 08.08.2018",
+      "detail": "All uses banned except on wheat.",
+      "crops_affected": [
+        "all except wheat"
+      ],
+      "source": [
+        "S4"
+      ]
+    },
+    {
+      "active_ingredient": "Carbofuran",
+      "aliases": [],
+      "status": "crop_claims_removed",
+      "notification": "Insecticides (Prohibition) Order 2023 (29.09.2023)",
+      "detail": "Label claims omitted for all formulations except 3% encapsulated granule (CG).",
+      "crops_affected": [
+        "all formulations other than 3% CG"
+      ],
+      "source": [
+        "S5"
+      ]
+    },
+    {
+      "active_ingredient": "Malathion",
+      "aliases": [],
+      "status": "crop_claims_removed",
+      "notification": "Insecticides (Prohibition) Order 2023 (29.09.2023)",
+      "detail": "Crop label claims omitted (no bio-efficacy and residue data).",
+      "crops_affected": [
+        "sorghum",
+        "pea",
+        "soybean",
+        "castor",
+        "sunflower",
+        "bhindi",
+        "brinjal",
+        "cauliflower",
+        "radish",
+        "turnip",
+        "tomato",
+        "apple",
+        "mango",
+        "grape"
+      ],
+      "source": [
+        "S5"
+      ]
+    },
+    {
+      "active_ingredient": "Quinalphos",
+      "aliases": [],
+      "status": "crop_claims_removed",
+      "notification": "Insecticides (Prohibition) Order 2023 (29.09.2023)",
+      "detail": "Crop label claims omitted.",
+      "crops_affected": [
+        "jute",
+        "cardamom",
+        "sorghum"
+      ],
+      "source": [
+        "S5"
+      ]
+    },
+    {
+      "active_ingredient": "Mancozeb",
+      "aliases": [],
+      "status": "crop_claims_removed",
+      "notification": "Insecticides (Prohibition) Order 2023 (29.09.2023)",
+      "detail": "Crop label claims omitted.",
+      "crops_affected": [
+        "guava",
+        "jowar",
+        "tapioca"
+      ],
+      "source": [
+        "S5"
+      ]
+    },
+    {
+      "active_ingredient": "Oxyfluorfen",
+      "aliases": [],
+      "status": "crop_claims_removed",
+      "notification": "Insecticides (Prohibition) Order 2023 (29.09.2023)",
+      "detail": "Crop label claims omitted.",
+      "crops_affected": [
+        "potato",
+        "groundnut"
+      ],
+      "source": [
+        "S5"
+      ]
+    },
+    {
+      "active_ingredient": "Dimethoate",
+      "aliases": [],
+      "status": "crop_claims_removed",
+      "notification": "Insecticides (Prohibition) Order 2023 (29.09.2023)",
+      "detail": "Crop label claims omitted.",
+      "crops_affected": [
+        "fruits and vegetables consumed as raw food items"
+      ],
+      "source": [
+        "S5"
+      ]
+    },
+    {
+      "active_ingredient": "Chlorpyriphos",
+      "aliases": [],
+      "status": "crop_claims_removed",
+      "notification": "Insecticides (Prohibition) Order 2023 (29.09.2023)",
+      "detail": "Crop label claims omitted.",
+      "crops_affected": [
+        "ber",
+        "citrus",
+        "tobacco"
+      ],
+      "source": [
+        "S5"
+      ]
+    },
+    {
+      "active_ingredient": "Paraquat dichloride",
+      "aliases": [],
+      "status": "prohibited_reported_unverified",
+      "notification": "S.O. 5234(E), 22.09.2026 (reported)",
+      "detail": "Registration prohibited and existing registration certificates cancelled, effective from Gazette publication. Taken from one trade news report that cites the order; confirm in the Gazette of India or on the PPQS website before relying on it.",
+      "crops_affected": null,
+      "source": [
+        "S6"
+      ]
+    }
+  ]
+}
