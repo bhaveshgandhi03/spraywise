@@ -204,6 +204,7 @@ function renderResult(res) {
 
   return h("article", { class: "result", dataset: { tox: tox || "none", signal } },
     h("header", { class: "result-head" },
+      h("p", { class: "result-kicker" }, t("res.kicker")),
       h("span", { class: "signal-label", dataset: { signal }, role: "status" }, t(`res.status.${signal}`)),
       h("h2", { class: "result-product" }, res.label.product_name || "—"),
       h("p", { class: "result-ingredient" }, ingredientsText(res.label) || t("res.ai.unknown"))),
@@ -365,13 +366,18 @@ async function viewScan(root) {
   const sampleBox = h("div", { class: "samples" });
   root.append(
     h("div", { class: "stack" },
-      cropChips(),
-      h("label", { class: "drop" }, input, icon("camera"), h("strong", {}, t("scan.take")), h("span", { class: "muted" }, t("scan.tip"))),
-      photoOn ? null : h("p", { class: "notice" }, t("scan.nophoto")),
-      preview,
-      h("button", { id: "scanBtn", class: "btn big go", type: "button", disabled: !state.file || !photoOn, onclick: runScan }, t("scan.analyze")),
+      h("header", { class: "page-heading" },
+        h("span", { class: "eyebrow" }, t("scan.kicker")),
+        h("h2", {}, t("scan.title")),
+        h("p", { class: "muted" }, t("scan.subtitle"))),
+      h("section", { class: "scan-panel stack" },
+        cropChips(),
+        h("label", { class: "drop" }, input, icon("camera"), h("strong", {}, t("scan.take")), h("span", { class: "muted" }, t("scan.tip"))),
+        photoOn ? null : h("p", { class: "notice" }, t("scan.nophoto")),
+        preview,
+        h("button", { id: "scanBtn", class: "btn big go", type: "button", disabled: !state.file || !photoOn, onclick: runScan }, t("scan.analyze"))),
       h("div", { id: "out", "aria-live": "polite" }),
-      h("section", {}, h("h3", {}, t("scan.sample")), h("p", { class: "muted" }, t("scan.sample.note")), sampleBox)));
+      h("section", { class: "sample-panel" }, h("h3", {}, t("scan.sample")), h("p", { class: "muted" }, t("scan.sample.note")), sampleBox)));
   if (state.pendingLabel) $("#out").append(renderLabelConfirmation(state.pendingLabel));
   else if (state.lastScan) $("#out").append(renderResult(state.lastScan));
   try {
